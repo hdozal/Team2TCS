@@ -2,7 +2,7 @@
 MEAN Stack application
 
 
-MediaApp - Angular Part
-MediaApp - Node.Js
+MediaApp - Angular FrontEnd
+MediaApp-api - Node.Js Web BackEnd
 
 
