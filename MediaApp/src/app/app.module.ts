@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddNewsComponent } from './components/addnews/addnews.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AddNewsComponent } from './components/addnews/addnews.component';
     AboutUsComponent,
     ContactUsComponent,
     HomePageComponent,
-    AddNewsComponent
+    AddNewsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
