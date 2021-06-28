@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken');
 
-const Task = require('../models/News')
+const News = require('../models/News')
 
 // router.get('/',(req,res) => {
 //   let headerInfo = req.headers.authorization;
@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
   news.description = publishedAt
 
 
-  task.save()
+  news.save()
   .then(data => res.json(data))
   .catch(err => res.status(500).json(err))
 })
