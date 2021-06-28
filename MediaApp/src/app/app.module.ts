@@ -10,6 +10,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AddNewsComponent } from './components/addnews/addnews.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SportsComponent,
     AboutUsComponent,
     ContactUsComponent,
-    HomePageComponent
+    HomePageComponent,
+    AddNewsComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
