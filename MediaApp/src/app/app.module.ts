@@ -13,6 +13,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddNewsComponent } from './components/addnews/addnews.component';
+import { NewslistComponent } from './components/newslist/newslist.component';
+import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { AddNewsComponent } from './components/addnews/addnews.component';
     AboutUsComponent,
     ContactUsComponent,
     HomePageComponent,
-    AddNewsComponent
+    AddNewsComponent,
+    NewslistComponent,
+    AdminnavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -4,20 +4,20 @@ const jwt = require('jsonwebtoken');
 
 const News = require('../models/News')
 
-// router.get('/',(req,res) => {
-//   let headerInfo = req.headers.authorization;
-//     console.log(headerInfo);
-//   if(headerInfo){
-//     let token = headerInfo.replace('Bearer ', '');
-//     let result = jwt.verify(token, 'secret1234');
-//     Task.find()
-//     .then(data => res.json(data))
-//     .catch(err => res.status(500).json(err))
-//   }
-//   else{
-//     res.send(null);
-//   }
-// })
+router.get('/',(req,res) => {
+  // let headerInfo = req.headers.authorization;
+  //   console.log(headerInfo);
+  // if(headerInfo){
+  //   let token = headerInfo.replace('Bearer ', '');
+  //   let result = jwt.verify(token, 'secret1234');
+    News.find()
+    .then(data => res.json(data))
+    .catch(err => res.status(500).json(err))
+  // }
+  // else{
+  //   res.send(null);
+  // }
+})
 
 // router.get('/:id', (req, res) => {
   
@@ -28,14 +28,15 @@ const News = require('../models/News')
 //     .catch(err => res.status(500).json(err))
 // })
 
-// router.delete('/:id', (req, res) => {
-//   // const { id } = req.params
-//   const id = req.params.id
+router.delete('/:id', (req, res) => {
+  // const { id } = req.params
+  const id = req.params.id
+  console.log(id);
 
-//   Task.findByIdAndDelete(id)
-//     .then(data => res.json(data))
-//     .catch(err => res.status(500).json(err))
-// })
+  News.findByIdAndDelete(id)
+    .then(data => res.json(data))
+    .catch(err => res.status(500).json(err))
+})
 
 router.post('/', (req, res) => {
   const { title, description, url, urlToImage, publishedAt } = req.body
@@ -46,9 +47,9 @@ router.post('/', (req, res) => {
   
   news.title = title
   news.description = description
-  news.description = url
-  news.description = urlToImage
-  news.description = publishedAt
+  news.url = url
+  news.urlToImage = urlToImage
+  news.publishedAt = publishedAt
 
 
   news.save()
