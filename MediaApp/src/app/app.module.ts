@@ -17,6 +17,7 @@ import { NewslistComponent } from './components/newslist/newslist.component';
 import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RegisterComponent } from './components/register/register.component';
     NewslistComponent,
     AdminnavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,7 @@ import { RegisterComponent } from './components/register/register.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
