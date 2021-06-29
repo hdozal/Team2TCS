@@ -36,8 +36,12 @@ export class NewslistComponent implements OnInit {
   handleDelete(id: any) {
     this.newsService.removeNews(id)
       .subscribe(
-        () => console.log('News Deleted'),
-        err => console.log(err)
+        () => 
+        {
+          console.log('News Deleted');
+          this.router.navigate(['/newsList']);
+        }
+        //err => console.log(err)
       )
   }
 

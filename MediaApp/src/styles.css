@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+<<<<<<< HEAD
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -7,3 +8,8 @@ html, body {
 .x-scroll-disabled {
 	overflow-x: hidden;
 }
+=======
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+>>>>>>> cdb8158a75f3b89338e9a6ab8db57b1063e4f3a1
