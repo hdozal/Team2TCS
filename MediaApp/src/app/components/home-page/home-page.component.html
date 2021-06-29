@@ -1,10 +1,35 @@
 <div id="container">
   <div style="padding-top: 55px;" class="row">
     <div id="weather" style="padding-top: 10px;padding-left: 50px;">
-      Weather Report
+      <!-- <label for="weather">{{desc}}</label>
+      <label for="city">{{temp}}</label>
+      <label for="city">{{cityName}}</label> -->
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 col-sm-12 col-xs-12">
+                <div class="card p-4">
+                    <div class="d-flex">
+                        <h6 class="flex-grow-1">{{cityName}}</h6>
+                        <h6>{{currentTime | date:'shortTime'}}</h6>
+                    </div>
+                    <div class="d-flex flex-column temp mt-5 mb-3">
+                        <h1 class="mb-0 font-weight-bold" id="heading"> {{temp}}° C </h1> <span class="small grey">{{desc  | titlecase}}</span>
+                    </div>
+                    <div class="d-flex">
+                        <div class="temp-details flex-grow-1">
+                            <p class="my-1"> <img src="https://i.imgur.com/B9kqOzp.png" height="17px"> <span> 40 km/h </span> </p>
+                            <p class="my-1"> <i class="fa fa-tint mr-2" aria-hidden="true"></i> <span> 84% </span> </p>
+                            <p class="my-1"> <img src="https://i.imgur.com/wGSJ8C5.png" height="17px"> <span> 0.2h </span> </p>
+                        </div>
+                        <div> <img src="https://i.imgur.com/Qw7npIg.png" width="100px"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
   </div>
-    <div id="image">
+    <div style="margin-top:14%" id="image">
         <ngb-carousel *ngIf="images">
             <ng-template ngbSlide>
               <img class="mh-100" style="width: 100%; height: 90vh" [src]="images[0]" alt="Random first slide">
@@ -28,8 +53,8 @@
     </div>
     <div class="row">
       <div class="column" style="background-color:#aaa;">
-        <h2> Latest News 1</h2>
-        <p>Some text..</p>
+        <h2 style="margin-left:10px" > Latest News 1</h2>
+        <p style="margin-left:10px" >Some text..</p>
       </div>
       <div class="column" style="background-color:#bbb;">
         <h2> Latest News 2</h2>
