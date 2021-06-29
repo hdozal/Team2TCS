@@ -16,6 +16,7 @@ export class SportsComponent implements OnInit {
     this.sportsService.getSportsNews().subscribe((response: any) => {
       console.log("Sports API Response ", response)
       response.articles.forEach((elem : any) => {
+        if(elem.urlToImage != null)
         this.sportsNews.push(elem)
       });
     console.log("Checking aray:", this.sportsNews)
