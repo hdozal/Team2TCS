@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NewsService } from 'src/app/services/news.service';
+import { SportsService } from 'src/app/services/sports.service';
 import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
@@ -11,13 +13,17 @@ import { WeatherService } from 'src/app/services/weather.service';
 
 })
 export class HomePageComponent implements OnInit {
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  images: any[]=[];
   cityName: string='';
   desc: string='';
   temp: Number =0;
   currentTime: any;
+  newsDetails: any[]=[];
   
-  constructor(config: NgbCarouselConfig, private weatherService: WeatherService) {
+  constructor(config: NgbCarouselConfig, 
+    private weatherService: WeatherService,
+     private newsService: NewsService) {
     // customize default values of carousels used by this component tree
     config.interval = 5000;
     config.wrap = false;
@@ -29,15 +35,24 @@ export class HomePageComponent implements OnInit {
     
     const request = await fetch("https://ipinfo.io/json?token=7dd06802688a7e")
     const json = await request.json()
-     this.cityName = json.city;
-    console.log(json.ip, json.country,json.city)
-
+    this.cityName = json.city;
     this.weatherService.getWeatherDetails(this.cityName).subscribe((response : any) => {
       console.log("Api response is: ", JSON.stringify(response), (response))
         this.temp = response.main.temp;
         this.desc = response.weather[0].description;
         this.currentTime = new Date();
     });
+
+    this.newsService.getNews().subscribe((response) => {
+      // console.log("News Response from db:", response)
+      if(response.length >0){
+        response.forEach((elem) => {
+          this.newsDetails.push(elem);
+          this.images.push(elem.urlToImage);
+        })
+        console.log("Response News Array", this.newsDetails)
+      }
+    })
 
 
   }

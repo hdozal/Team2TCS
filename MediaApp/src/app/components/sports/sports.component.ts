@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SportsService } from 'src/app/services/sports.service';
 
 @Component({
   selector: 'app-sports',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SportsComponent implements OnInit {
 
-  constructor() { }
+  sportsNews: any[]=[];
+  constructor(private sportsService: SportsService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+
+    this.sportsService.getSportsNews().subscribe((response: any) => {
+      console.log("Sports API Response ", response)
+      response.articles.forEach((elem : any) => {
+        this.sportsNews.push(elem)
+      });
+    console.log("Checking aray:", this.sportsNews)
+    });
   }
 
 }
