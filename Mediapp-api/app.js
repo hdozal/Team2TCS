@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const addNews = require('./routes/addNews')
+const auth = require('./routes/auth')
+
 const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
 let port = 3300
 
@@ -29,6 +31,8 @@ app.use(express.json())
 
 app.use('/news', addNews)
 
+app.use('/auth', auth)
+
 app.get('/weather',(req,res) => {
     request(url, (err,response,body) =>{
         if(err){
@@ -42,4 +46,3 @@ app.get('/weather',(req,res) => {
 });
 
 module.exports = app
-

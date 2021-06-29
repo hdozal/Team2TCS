@@ -1,10 +1,6 @@
 let router = require('express').Router()
 let userController = require('../controllers/userController')
 
-router.get('/', (req,res)=>{
-    res.send('API Works')
-})
-
 router.route('/auth/register').post(
     userController.register
 )
