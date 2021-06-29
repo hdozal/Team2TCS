@@ -1,13 +1,28 @@
-<div style="color:blue;text-align:center">
-    <h2 style="color:blue;text-align:center">Login Form</h2>
-    <form [formGroup]="loginRef" (ngSubmit)="checkUser()">
-        <label>UserName</label>
-        <input type="text" formControlName="user"/><br/>
-        <label>Password</label>
-        <input type="password" formControlName="pass"/><br/>
-        <input type="submit" value="Login"/>
-        <input type="reset" value="Clear"/><br/>
+<div class="formcontainer">
+    <div class="formbody">
+        <form style="width:100%;" [formGroup]="loginForm">
+            <div class="header">Welcome</div>
+            <div>
+                <mat-form-field style="width:100%;">
+                    <input type="text" formControlName="email" matInput placeholder="Email Address">
+                </mat-form-field>
+                <span>Username cannot be blank</span>
+            </div>
+            <div>
+                <mat-form-field style="width:100%;">
+                    <input type="password" formControlName="password" matInput placeholder="Password">
+                </mat-form-field>
+                <span >Password cannot be blank</span>
+            </div>
+            <div style="margin-top:40px;">
+                <button class="form-btn" (click)="login()">Login</button>
+            </div>
+        </form>
+    </div>
 
-    </form>
-    {{msg}}
+    <div>
+        <div style="width: 290px; padding: 20px;">
+            <button class="form-btn-hollow" (click)="movetoregister()">Register</button>
+        </div>
+    </div>
 </div>

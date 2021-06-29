@@ -1,34 +1,68 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-
 export class RegisterComponent implements OnInit {
 
-  loginRef=new FormGroup({
-      fname:new FormControl(),
-      lname:new FormControl(),
-      user:new FormControl(),
-      pass:new FormControl()
+  myForm: FormGroup;
+  successMessage: String = '';
+  constructor(private _myservice: AuthenticationService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute) {
+    this.myForm = new FormGroup({
+      email: new FormControl(null, Validators.email),
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+      cnfpass: new FormControl(null, this.passValidator)
     });
-    msg:string=""
-  constructor() { }
 
-  ngOnInit(): void {
+    this.myForm.controls.password.valueChanges
+      .subscribe(
+        x => this.myForm.controls.cnfpass.updateValueAndValidity()
+      );
   }
-  checkUser() {
-     console.log(this.loginRef.value);   // all value
-     let user1 = this.loginRef.get("user")?.value;  // get specific control value.
-     let pass1 = this.loginRef.get("pass")?.value;
-     console.log(user1+" "+pass1);
-     localStorage.setItem("user1",user1);
-     localStorage.setItem("pass1",pass1);
-       this.msg = "Successfully Registered!"
 
-   }
+  ngOnInit() {
+  }
 
+
+  passValidator(control: AbstractControl) {
+    if (control && (control.value !== null || control.value !== undefined)) {
+      const cnfpassValue = control.value;
+
+      const passControl = control.root.get('password');
+      if (passControl) {
+        const passValue = passControl.value;
+        if (passValue !== cnfpassValue || passValue === '') {
+          return {
+            isError: true
+          };
+        }
+      }
+    }
+
+    return null;
+  }
+
+  register() {
+    console.log(this.myForm.value);
+
+    if (this.myForm.valid) {
+      this._myservice.submitRegister(this.myForm.value)
+        .subscribe(
+          data => this.successMessage = 'Registration Success',
+          error => this.successMessage = 'Some error'
+        );
+    }
+  }
+
+  movetologin() {
+    this._router.navigate(['../login'], { relativeTo: this._activatedRoute });
+  }
 }
