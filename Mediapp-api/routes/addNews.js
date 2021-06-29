@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 
 const News = require('../models/News')
 
+
+//get all
 router.get('/',(req,res) => {
   // let headerInfo = req.headers.authorization;
   //   console.log(headerInfo);
@@ -19,14 +21,15 @@ router.get('/',(req,res) => {
   // }
 })
 
-// router.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   
-//   const { id } = req.params
-
-//   Task.findById(id)
-//     .then(data => res.json(data))
-//     .catch(err => res.status(500).json(err))
-// })
+  const { id } = req.params
+  // const id  = req.params.id
+  console.log(id);
+  News.findById(id)
+    .then(data => res.json(data))
+    .catch(err => res.status(500).json(err))
+})
 
 router.delete('/:id', (req, res) => {
   // const { id } = req.params
@@ -57,15 +60,51 @@ router.post('/', (req, res) => {
   .catch(err => res.status(500).json(err))
 })
 
-// router.patch('/:id/status', (req, res) => {
-//   const { id } = req.params
-//   Task.findById(id)
-//     .then(task => { //new Task()
-//       task.completed = !task.completed
-//       return task.save()
+//http://localhost:3000/news/new.id
+router.put('/:id', (req, res) => {
+  // const { id } = req.params
+  const id = req.params.id
+  
+  const { title, description, url, urlToImage, publishedAt } = req.body
+ 
+  News.title = title
+  News.description = description
+  News.url = url
+  News.urlToImage = urlToImage
+  News.publishedAt = publishedAt
+  console.log(News.description);
+  
+  News.findByIdAndUpdate(id,
+    {title: News.title,
+      description: News.description,
+       url: News.url,
+        urlToImage: News.urlToImage, 
+        publishedAt: News.publishedAt, }, function(err, result){
+
+    if(err){
+        res.send(err)
+    }
+    else{
+        res.send(result)
+    }
+})
+})
+
+
+// router.put('/:id', (req, res) => {
+//   // const { id } = req.params
+
+//   const { id } = req.params.id
+//   News.findById(id)
+//     .then(news => { //new News()
+//       news.completed = !news.completed
+//       return news.save()
 //     })
-//     .then(updatedtask => res.json(updatedtask))
+//     .then(updatednews => res.json(updatednews))
 //     .catch(err => res.status(500).json(err))
 // })
+
+
+
 
 module.exports = router

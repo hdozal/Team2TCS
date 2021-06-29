@@ -17,6 +17,9 @@ import { NewslistComponent } from './components/newslist/newslist.component';
 import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { EditnewsComponent } from './components/editnews/editnews.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -29,9 +32,11 @@ import { RegisterComponent } from './components/register/register.component';
     HomePageComponent,
     AddNewsComponent,
     NewslistComponent,
-    AdminnavbarComponent
+    AdminnavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditnewsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

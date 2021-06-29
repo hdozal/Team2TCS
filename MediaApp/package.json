@@ -24,7 +24,6 @@
     "datatables.net-dt": "^1.1.0",
     "jquery": "^3.6.0",
     "bootstrap": "^5.0.2",
-
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
