@@ -1,18 +1,33 @@
 const express = require('express')
-const app = express()
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
-let port = 3300
+const addNews = require('./routes/addNews')
 const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
+let port = 3300
 
+mongoose.connect(
+    //'mongodb://mongo-db:27017/taskManager',
+    'mongodb://localhost:27017/MediaApp',
+    {
+        useNewUrlParser:true,
+        useUnifiedTopology:true
+    },
+    (err) => err ? console.log('Something got wrong', err) : console.log('DB Connected')
+)
 
+const app = express()
 
-let apiRoutes = require('./routes/routes')
+app.use(cors())
 
-app.use('/api',apiRoutes)
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }))
+ 
+// parse application/json
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+
+app.use('/news', addNews)
 
 app.get('/weather',(req,res) => {
     request(url, (err,response,body) =>{
@@ -25,3 +40,6 @@ app.get('/weather',(req,res) => {
         }
     });
 });
+
+module.exports = app
+

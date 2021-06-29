@@ -13,7 +13,7 @@ const apiUrl = 'http://localhost:3000/news'
 export class NewsService {
   constructor(private http: HttpClient) { }
 
-  // getTasks(): Observable<Task[]> {
+  getNews(): Observable<News[]> {
   //   if(this.auth.retrieveUser()!==null){
   //   let httpOption = {
   //     headers : new HttpHeaders({
@@ -24,9 +24,11 @@ export class NewsService {
   //   return this.http.get<Task[]>(apiUrl, httpOption)
   // }
   // else{
-  //   return this.http.get<Task[]>(apiUrl);
+    return this.http.get<News[]>(apiUrl);
   // }
-  // }
+  }
+
+
 
   // getSingleTask(id): Observable<Task> {
   //   return this.http.get<Task>(apiUrl + '/' + id)
@@ -36,7 +38,7 @@ export class NewsService {
     return this.http.post<News>(apiUrl, data)
   }
 
-  // removeTask(id): Observable<Task> {
-  //   return this.http.delete<Task>(apiUrl + '/' + id)
-  // }
+  removeNews(id: any): Observable<News> {
+    return this.http.delete<News>(apiUrl + '/' + id)
+  }
 }

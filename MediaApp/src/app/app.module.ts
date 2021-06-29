@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddNewsComponent } from './components/addnews/addnews.component';
+import { NewslistComponent } from './components/newslist/newslist.component';
+import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
@@ -26,6 +28,8 @@ import { RegisterComponent } from './components/register/register.component';
     ContactUsComponent,
     HomePageComponent,
     AddNewsComponent,
+    NewslistComponent,
+    AdminnavbarComponent
     LoginComponent,
     RegisterComponent
   ],
