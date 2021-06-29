@@ -15,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddNewsComponent } from './components/addnews/addnews.component';
 import { NewslistComponent } from './components/newslist/newslist.component';
 import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.compo
     AddNewsComponent,
     NewslistComponent,
     AdminnavbarComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

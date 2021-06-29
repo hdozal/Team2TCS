@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const addNews = require('./routes/addNews')
+const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
+let port = 3300
 
 mongoose.connect(
     //'mongodb://mongo-db:27017/taskManager',
@@ -27,4 +29,17 @@ app.use(express.json())
 
 app.use('/news', addNews)
 
+app.get('/weather',(req,res) => {
+    request(url, (err,response,body) =>{
+        if(err){
+            console.log(err);
+        } else {
+           
+            const output = JSON.parse(body);
+            res.send(output);
+        }
+    });
+});
+
 module.exports = app
+
