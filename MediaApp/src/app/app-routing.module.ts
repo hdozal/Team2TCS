@@ -7,6 +7,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { EditnewsComponent } from './components/editnews/editnews.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { MainDeskComponent } from './components/main-desk/main-desk.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NewslistComponent } from './components/newslist/newslist.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -64,6 +65,14 @@ const routes: Routes = [
     
       path:'register',
       component: RegisterComponent
+      },
+      {
+        path: 'main', component: MainDeskComponent, children:
+          [
+            {path: '', redirectTo: 'login', pathMatch: 'full'},
+            { path: 'login', component: LoginComponent },
+            { path: 'register', component: RegisterComponent }
+          ]
       }
 
 ];

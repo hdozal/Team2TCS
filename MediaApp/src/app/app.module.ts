@@ -15,10 +15,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddNewsComponent } from './components/addnews/addnews.component';
 import { NewslistComponent } from './components/newslist/newslist.component';
 import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
-import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EditnewsComponent } from './components/editnews/editnews.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthenticationService } from './services/authentication.service';
+import { LoginComponent } from './components/login/login.component';
+import { MainDeskComponent } from './components/main-desk/main-desk.component';
 
 
 @NgModule({
@@ -36,7 +43,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LoginComponent,
     RegisterComponent,
     EditnewsComponent,
-    NavbarComponent
+    NavbarComponent,
+    MainDeskComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +52,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

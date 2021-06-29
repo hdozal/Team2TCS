@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,32 +10,37 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  loginRef=new FormGroup({
-      user:new FormControl(),
-      pass:new FormControl()
+  loginForm: FormGroup;
+  constructor(private _myservice: AuthenticationService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute) {
+    this.loginForm = new FormGroup({
+      email: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
     });
-    msg:string=""
-  constructor(public router:Router) { }
 
-  ngOnInit(): void {
   }
-  checkUser() {
-     console.log(this.loginRef.value);   // all value
-     let user1 = this.loginRef.get("user")?.value;  // get specific control value.
-     let pass1 = this.loginRef.get("pass")?.value;
-     console.log(user1+" "+pass1);
-     let un=localStorage.getItem('user1');
-     console.log(un);
 
-     let ps=localStorage.getItem('pass1');
-     console.log(ps);
+  ngOnInit() {
+  }
 
-     //let ps=JSON.parse(localStorage.getItem('pass1').value);
-     if(user1==un && pass1==ps){
-       this.msg = "Successfully Login!"
-       this.router.navigate(["portfolio"]);
-     }else {
-       this.msg = "Failure try once again";
-     }
-   }
+  login() {
+    console.log(this.loginForm.value);
+
+    if (this.loginForm.valid) {
+      this._myservice.login(this.loginForm.value)
+        .subscribe(
+          data => {
+            console.log(data);
+            localStorage.setItem('token', data.toString());
+            this._router.navigate(['/addNews']);
+          },
+          error => { }
+        );
+    }
+  }
+
+  movetoregister() {
+    this._router.navigate(['../register'], { relativeTo: this._activatedRoute });
+  }
 }
