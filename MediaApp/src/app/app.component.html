@@ -1,10 +1,13 @@
 
-<div *ngIf ="!navBarFlag">
-<app-homenavbar></app-homenavbar>
+<div *ngIf ="!navBarFlag" class="container">
+    <app-homenavbar></app-homenavbar>
 </div>
-<!-- <app-addnews></app-addnews> -->
-<!-- <app-newslist></app-newslist> -->
-<!-- <app-adminnavbar></app-adminnavbar> -->
 <app-footer></app-footer>
 
-<app-chat></app-chat>
+
+<div class="chatbox chatbox__button">
+    <button type="button" (click)="openChat()">Chat</button>
+</div>
+<div *ngIf="chatFlag">
+    <app-chat></app-chat>
+</div>
