@@ -1,1 +1,19 @@
-<p style="padding-top:5%"> loaded sports works!</p>
+<div style="padding-top:65px">
+    <div class="container-fluid mb-4">
+        <div class="row justify-content-center row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+            <div class="col mt-4" *ngFor="let elem of sportsNews">
+                <div class="card">
+                    <img src="{{elem.urlToImage}}" alt="...">
+                    <div class="card-body">
+                        <a href="{{elem.url}}">
+                        <h5 class="card-title">{{elem.title}}</h5> </a>
+                        <p class="card-text">{{elem.description}}.</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted"><b>Author: </b>{{elem.author}}&nbsp; &nbsp; <b>Published At: </b> {{elem.publishedAt | date:'medium'}}</small>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
