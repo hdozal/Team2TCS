@@ -20,7 +20,6 @@ export class HomePageComponent implements OnInit {
   temp: Number =0;
   currentTime: any;
   newsDetails: any[]=[];
-  lastUpdate: any[]=[1,3,5];
   
   constructor(config: NgbCarouselConfig, 
     private weatherService: WeatherService,
@@ -52,6 +51,9 @@ export class HomePageComponent implements OnInit {
           this.images.push(elem.urlToImage);
         })
         console.log("Response News Array", this.newsDetails)
+        this.newsDetails.forEach((item, i) => {
+          item.lastUpdate = i + 5;
+        });
       }
     })
 
