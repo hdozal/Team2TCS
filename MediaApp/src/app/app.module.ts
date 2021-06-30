@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthenticationService } from './services/authentication.service';
 import { LoginComponent } from './components/login/login.component';
 import { MainDeskComponent } from './components/main-desk/main-desk.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { MainDeskComponent } from './components/main-desk/main-desk.component';
     EditnewsComponent,
     NavbarComponent,
     MainDeskComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

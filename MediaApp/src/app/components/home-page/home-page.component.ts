@@ -20,6 +20,7 @@ export class HomePageComponent implements OnInit {
   temp: Number =0;
   currentTime: any;
   newsDetails: any[]=[];
+  lastUpdate: any[]=[1,3,5];
   
   constructor(config: NgbCarouselConfig, 
     private weatherService: WeatherService,

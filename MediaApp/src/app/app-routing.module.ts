@@ -5,6 +5,7 @@ import { AddNewsComponent } from './components/addnews/addnews.component';
 import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { EditnewsComponent } from './components/editnews/editnews.component';
+import { ErrorComponent } from './components/error/error.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainDeskComponent } from './components/main-desk/main-desk.component';
@@ -52,9 +53,8 @@ const routes: Routes = [
     component: NewslistComponent
   },
   {
-    
-  path:'adminNews',
-  component: AdminnavbarComponent
+    path:"**",
+    component:ErrorComponent
   },
   {
     
