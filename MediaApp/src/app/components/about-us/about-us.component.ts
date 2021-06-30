@@ -24,7 +24,7 @@ export class AboutUsComponent implements OnInit {
       console.log(
         `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
       );
-      let mymap = L.map('map').setView(latLong, 10);
+      let mymap = L.map('map').setView(latLong, 9);
 
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXJhdmluZHMxOTk2IiwiYSI6ImNrcWg0ZjBrMzE0YWUycHBlcm16OW1lNjcifQ.rTmLnOC7rexlaLeKtuGHgg',

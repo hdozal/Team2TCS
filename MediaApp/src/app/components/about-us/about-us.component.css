@@ -1,7 +1,25 @@
 #map {
-    padding-top: 150px;
-    padding-bottom: 15px;
-    height: 60vh;
-    width: 80vh;
+    /* padding-top: 100px; */
+    /* padding-bottom: 15px; */
+    height: 47vh;
+    width: 70vh;
     margin: auto;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+}

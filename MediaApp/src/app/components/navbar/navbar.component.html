@@ -40,15 +40,15 @@
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item active">
               <a class="nav-link" routerLinkActive="active" routerLink="/addNews">NewsForm <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" routerLinkActive="active" routerLink="/newsList">EditNews<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" (click)="logout()">Logout<span class="sr-only">(current)</span></a>
+            <li class="nav-item navbar-right active">
+              <a  class="nav-link logout" id="" (click)="logout()">Logout<span class="sr-only">(current)</span></a>
             </li>
             
       
@@ -58,9 +58,9 @@
       </nav>
       </div>
       
-      <div class="loginnavbar" *ngIf="router.url == '/register' 
+      <div class="loginnavbar" *ngIf="router.url == '/main/register' 
       || router.url == '/login'
-      || router.url == '/main'
+      || router.url == '/main/login'
       ">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#"><i class="fa fa-cube"></i>&nbsp;Update 24x7 Admin</a>

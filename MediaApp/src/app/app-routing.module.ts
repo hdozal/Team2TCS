@@ -52,29 +52,18 @@ const routes: Routes = [
     path :'newsList', 
     component: NewslistComponent
   },
-
   {
-    
-    path:'login',
-    component: LoginComponent
-    },
-    {
-    
-      path:'register',
-      component: RegisterComponent
-      },
-      {
-        path: 'main', component: MainDeskComponent, children:
-          [
-            {path: '', redirectTo: 'login', pathMatch: 'full'},
-            { path: 'login', component: LoginComponent },
-            { path: 'register', component: RegisterComponent }
-          ]
-      },
-      {
-        path:"**",
-        component:ErrorComponent
-      },
+    path: 'main', component: MainDeskComponent, children:
+      [
+        {path: '', redirectTo: 'login', pathMatch: 'full'},
+        { path: 'login', component: LoginComponent },
+        { path: 'register', component: RegisterComponent }
+      ]
+  },
+  {
+    path:"**",
+    component:ErrorComponent
+  },
 
 ];
 
