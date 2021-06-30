@@ -25,13 +25,13 @@ export class AddNewsComponent implements OnInit {
       this.myService.getUserName()
     .subscribe(
       data => this.username= data.toString(),
-      //error => this._router.navigate(['/main/login'])
+      error => this._router.navigate(['/main/login'])
     )
     console.log(this.username);
     this.myService.getEmail()
     .subscribe(
       data => this.email= data.toString(),
-      //error => this._router.navigate(['/main/login'])
+      error => this._router.navigate(['/main/login'])
     )
     console.log(this.email);
     }

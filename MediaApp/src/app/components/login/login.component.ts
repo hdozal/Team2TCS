@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -10,23 +10,33 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
+  submitted = false ;
+  Message: String = '';
+
   constructor(private _myservice: AuthenticationService,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute) {
-    this.loginForm = new FormGroup({
-      email: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required)
-    });
+    private _activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder)
+     {}
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group(
+      {
+      email: ['', [Validators.required,Validators.email]],
+      password: ['', [Validators.required,Validators.minLength(6)]],
+      });
 
   }
 
-  ngOnInit() {
+  get fval() { 
+    return this.loginForm.controls; 
   }
 
   login() {
     console.log(this.loginForm.value);
 
+    this.submitted = true;
     if (this.loginForm.valid) {
       this._myservice.login(this.loginForm.value)
         .subscribe(
@@ -35,7 +45,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token', data.toString());
             this._router.navigate(['/addNews']);
           },
-          error => { }
+          error => this.Message = 'Invalid Login Credentials'
         );
     }
   }
@@ -44,3 +54,4 @@ export class LoginComponent implements OnInit {
     this._router.navigate(['../register'], { relativeTo: this._activatedRoute });
   }
 }
+
