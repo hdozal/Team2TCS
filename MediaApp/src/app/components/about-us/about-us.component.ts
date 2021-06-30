@@ -18,11 +18,13 @@ export class AboutUsComponent implements OnInit {
     }
     navigator.geolocation.getCurrentPosition((position) => {
       const coords = position.coords;
-      const latLong = [coords.latitude, coords.longitude];
+      // const latLong = [coords.latitude, coords.longitude];
+      const latLong = [40.562827364053184, -74.33468464718592];
+
       console.log(
         `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
       );
-      let mymap = L.map('map').setView(latLong, 13);
+      let mymap = L.map('map').setView(latLong, 10);
 
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXJhdmluZHMxOTk2IiwiYSI6ImNrcWg0ZjBrMzE0YWUycHBlcm16OW1lNjcifQ.rTmLnOC7rexlaLeKtuGHgg',
@@ -43,7 +45,7 @@ export class AboutUsComponent implements OnInit {
 
       let popup = L.popup()
         .setLatLng(latLong)
-        .setContent('We are here')
+        .setContent('Tata Consultancy Services')
         .openOn(mymap);
     });
     this.watchPosition();

@@ -28,6 +28,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MainDeskComponent } from './components/main-desk/main-desk.component';
 import { ConfirmEqualValidatorDirective } from '../app/components/register/confirm-equal-validator.directive';
 import { DataTablesModule } from "angular-datatables";
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { DataTablesModule } from "angular-datatables";
     EditnewsComponent,
     NavbarComponent,
     MainDeskComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
