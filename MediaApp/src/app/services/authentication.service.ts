@@ -16,7 +16,8 @@ export class AuthenticationService {
 
   login(body:any){
     return this._http.post('http://localhost:3000/users/login', body,{
-      observe:'body'
+      observe:'body',
+      
     });
   }
 
@@ -26,6 +27,7 @@ export class AuthenticationService {
       params: new HttpParams().append('token', localStorage.getItem('token') || '{}')
     });
   }
+
   getEmail() {
     return this._http.get('http://localhost:3000/users/email', {
       observe: 'body',

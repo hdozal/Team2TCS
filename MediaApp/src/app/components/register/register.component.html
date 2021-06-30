@@ -1,33 +1,58 @@
 <div class="formcontainer">
     <div class="formbody">
-        <form style="width:100%;" [formGroup]="myForm">
+        <form style="width:100%;" [formGroup]="myForm" (ngSubmit)="register();">
             <div class="header">Register</div>
-            <div>
+            <div class="form-group">
                 <mat-form-field style="width:100%;">
-                    <input type="text" formControlName="email" matInput placeholder="Email" id="email">
+                    <input type="text" formControlName="email" matInput placeholder="Email" id="email" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }">
                 </mat-form-field>                
-                <span>Entered email is invalid</span>
+                <div *ngIf="submitted && fval.email.errors" >
+                    <div *ngIf="fval.email.errors.required">Email is required</div>
+                    <div *ngIf="fval.email.errors.email">Enter a valid email address , example : king@gmail.com</div>
+                </div>
             </div>
-            <div>
+            <div class="form-group">
                 <mat-form-field style="width:100%;">
-                    <input type="text" formControlName="username" matInput placeholder="Username" id="user">
+                    <input type="text" formControlName="username" matInput placeholder="Username" id="user" [ngClass]="{ 'is-invalid': submitted && fval.username.errors }">
                 </mat-form-field>
-                <span >Username is required</span>
+                <div *ngIf="submitted && fval.username.errors">
+                    <div *ngIf="fval.username.errors.required">
+                        User Name is required 
+                    </div>
+                </div>
+
             </div>
-            <div>
+            <div class="form-group">
                 <mat-form-field style="width:100%;">
-                    <input type="password" formControlName="password" matInput placeholder="Password" id="pass">
+                    <input type="password" formControlName="password" matInput placeholder="Password" id="pass" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }">
                 </mat-form-field>
-                <span>Password is a mandatory field</span>
+                <div *ngIf="submitted && fval.password.errors">
+                    <div ngClass="fval.password.errors.required">Password is required.</div>
+                    <div *ngIf="fval.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
             </div>
-            <div>
+
+            <div class="form-group">
                 <mat-form-field style="width:100%;">
-                    <input type="password" formControlName="cnfpass" matInput placeholder="Re-enter Password" id="cnfpass">
+                <input type="password" formControlName="confirmPassword"
+                matInput placeholder="Confirm Password"[ngClass]="{ 'is-invalid': submitted && fval.confirmPassword.errors }" 
+                 appConfirmEqualValidator='password'/>
                 </mat-form-field>
-                <span >Password and confirm password should match</span>
-            </div>
-            <div style="margin-top:20px;">
-                <button class="form-btn" (click)="register()">Register</button>
+                <div *ngIf="submitted && fval.confirmPassword.errors">
+                    <div *ngIf="fval.confirmPassword.errors.required"
+                    >Confirm password is required</div>
+                    <div *ngIf="myForm.get('confirmPassword').errors && myForm.get('confirmPassword').errors.ConfirmPassword">Password Mismatch</div>
+                </div>
+                
+              </div>
+            
+            <div>
+                <button type="submit" class="btn btn-primary register">Register <span class="arrowbtn"><span
+                      class="fa fa-arrow-right"></span></span></button>
+              
+              &nbsp;
+                <button class="btn btn-primary signin" (click)="movetologin()">Login<span class="arrowbtn"><span
+                    class="fa fa-arrow-right"></span></span></button>
             </div>
 
 
@@ -35,11 +60,5 @@
                 {{successMessage}}
             </div>
         </form>
-    </div>
-
-    <div>
-        <div style="width: 290px; padding: 20px;">
-            <button class="form-btn-hollow" (click)="movetologin()">Login</button>
-        </div>
     </div>
 </div>

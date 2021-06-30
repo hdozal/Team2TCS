@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { News } from 'src/app/models/news';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NewsService } from 'src/app/services/news.service';
+
 
 @Component({
   selector: 'app-editnews',
@@ -10,8 +12,10 @@ import { NewsService } from 'src/app/services/news.service';
   styleUrls: ['./editnews.component.css']
 })
 export class EditnewsComponent implements OnInit {
+  username = '';
+  email = '';
 
-  constructor(private newsService: NewsService,private router: Router,private route: ActivatedRoute,private formBuilder: FormBuilder) { }
+  constructor(private myService:AuthenticationService,private newsService: NewsService,private router: Router,private route: ActivatedRoute,private formBuilder: FormBuilder) { }
   // title: string = ''
   // description: string = ''
   // url: string = ''
@@ -21,6 +25,16 @@ export class EditnewsComponent implements OnInit {
   newsForm!: FormGroup;
 
   ngOnInit(): void {
+    this.myService.getUserName()
+    .subscribe(
+      data => this.username= data.toString()
+    )
+    console.log(this.username);
+    this.myService.getEmail()
+    .subscribe(
+      data => this.email= data.toString()
+    )
+
     this.newsForm = new FormGroup({
       _id: new FormControl(),
       title:new FormControl(),

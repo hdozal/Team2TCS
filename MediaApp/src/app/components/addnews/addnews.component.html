@@ -1,8 +1,8 @@
 
 <!--Implement username and email to show-->
 
-<p>Username : {{username}}</p>
-<p>Email: {{email}}</p>
+
+<div class="p-3 mb-2 bg-success text-white center">Username : {{username}} &nbsp;&nbsp;  Email: {{email}}</div>
 
 <form (submit)="handleSubmit()">
     <h1>Add News</h1>
@@ -38,6 +38,7 @@
         <input appHighlight type="text" id="publishedAt" class="form-control" name="publishedAt" [(ngModel)]="publishedAt">
       </div>
   
-    <button class="btn btn-primary">Add</button>
+    <button class="btn btn-primary" onClick="alert('News Added!')">Add</button>
+    <button type=reset class="btn btn-warning">Reset</button>
   </form>
   
