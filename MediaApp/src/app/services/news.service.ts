@@ -30,9 +30,9 @@ export class NewsService {
 
 
 
-  // getSingleTask(id): Observable<Task> {
-  //   return this.http.get<Task>(apiUrl + '/' + id)
-  // }
+  getSingleNews(id:any): Observable<News> {
+    return this.http.get<News>(apiUrl + '/' + id)
+  }
 
   addNews(data: any): Observable<News> {
     return this.http.post<News>(apiUrl, data)
@@ -41,4 +41,11 @@ export class NewsService {
   removeNews(id: any): Observable<News> {
     return this.http.delete<News>(apiUrl + '/' + id)
   }
+
+  updateNews(data: any)
+  {
+    console.log(data);
+    return this.http.put<News>(apiUrl + '/' + data._id, data);
+  }
+
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
@@ -13,8 +15,24 @@ export class AddNewsComponent implements OnInit {
   url: string = ''
   urlToImage: string = ''
   publishedAt: string = ''
+  username = '';
+  email = '';
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService, private myService:AuthenticationService,
+    private _router: Router) { 
+      this.myService.getUserName()
+    .subscribe(
+      data => this.username= data.toString(),
+      error => this._router.navigate(['/main/login'])
+    )
+    console.log(this.username);
+    this.myService.getEmail()
+    .subscribe(
+      data => this.email= data.toString(),
+      error => this._router.navigate(['/main/login'])
+    )
+    console.log(this.email);
+    }
 
   ngOnInit(): void {
   }

@@ -15,13 +15,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddNewsComponent } from './components/addnews/addnews.component';
 import { NewslistComponent } from './components/newslist/newslist.component';
 import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
-import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { EditnewsComponent } from './components/editnews/editnews.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthenticationService } from './services/authentication.service';
+import { LoginComponent } from './components/login/login.component';
+import { MainDeskComponent } from './components/main-desk/main-desk.component';
+import { ConfirmEqualValidatorDirective } from '../app/components/register/confirm-equal-validator.directive';
+import { DataTablesModule } from "angular-datatables";
+import { ErrorComponent } from './components/error/error.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    ConfirmEqualValidatorDirective,
     HomenavbarComponent,
     FooterComponent,
     SportsComponent,
@@ -33,7 +47,11 @@ import { ChatComponent } from './components/chat/chat.component';
     AdminnavbarComponent,
     LoginComponent,
     RegisterComponent,
-    ChatComponent
+    ChatComponent,
+    EditnewsComponent,
+    NavbarComponent,
+    MainDeskComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +60,13 @@ import { ChatComponent } from './components/chat/chat.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    DataTablesModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

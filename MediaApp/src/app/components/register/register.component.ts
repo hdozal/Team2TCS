@@ -1,34 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { AuthenticationService } from '../../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmPasswordValidator } from './ConfirmPassworValidator';
+import {ConfirmEqualValidatorDirective} from './confirm-equal-validator.directive';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-
 export class RegisterComponent implements OnInit {
 
-  loginRef=new FormGroup({
-      fname:new FormControl(),
-      lname:new FormControl(),
-      user:new FormControl(),
-      pass:new FormControl()
-    });
-    msg:string=""
-  constructor() { }
+  myForm!: FormGroup;
+  submitted = false;
 
-  ngOnInit(): void {
+  successMessage: String = '';
+
+  constructor(private _myservice: AuthenticationService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.myForm = this.formBuilder.group(
+      {
+      email: ['', [Validators.required,Validators.email]],
+      username: ['', Validators.required],
+      password: ['', [Validators.required,Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+    }, {
+      validator: ConfirmPasswordValidator.MatchPassword
+  });
   }
-  checkUser() {
-     console.log(this.loginRef.value);   // all value
-     let user1 = this.loginRef.get("user")?.value;  // get specific control value.
-     let pass1 = this.loginRef.get("pass")?.value;
-     console.log(user1+" "+pass1);
-     localStorage.setItem("user1",user1);
-     localStorage.setItem("pass1",pass1);
-       this.msg = "Successfully Registered!"
 
-   }
+  get fval() { 
+    return this.myForm.controls; 
+  }
 
+
+  register() {
+    console.log(this.myForm.value);
+    this.submitted = true;
+    if (this.myForm.valid) {
+      this._myservice.submitRegister(this.myForm.value)
+        .subscribe(
+          data => this.successMessage = 'Registration Success',
+          error => this.successMessage = 'Registration Failed'
+        );
+    }
+    else{
+      return;
+    }
+  }
+
+  movetologin() {
+    this._router.navigate(['../login'], { relativeTo: this._activatedRoute });
+  }
 }

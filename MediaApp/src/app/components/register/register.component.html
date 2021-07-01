@@ -1,16 +1,64 @@
-<div style="color:blue;text-align:center">
-    <h2 style="color:blue;text-align:center">Registration Form</h2>
-    <form [formGroup]="loginRef" (ngSubmit)="checkUser()">
-        <label>First Name</label>
-        <input type="text" formControlName="fname"/><br/>
-        <label>Last Name</label>
-        <input type="text" formControlName="lname"/><br/>
-        <label>UserName</label>
-        <input type="text" formControlName="user"/><br/>
-        <label>Password</label>
-        <input type="password" formControlName="pass"/><br/>
-        <input type="submit" value="Register"/>
-        <input type="reset" value="Reset"/><br/>
-    </form>
-   {{msg}}
+<div class="formcontainer">
+    <div class="formbody">
+        <form style="width:100%;" [formGroup]="myForm" (ngSubmit)="register();">
+            <div class="header">Register</div>
+            <div class="form-group">
+                <mat-form-field style="width:100%;">
+                    <input type="text" formControlName="email" matInput placeholder="Email" id="email" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }">
+                </mat-form-field>                
+                <div *ngIf="submitted && fval.email.errors" >
+                    <div *ngIf="fval.email.errors.required">Email is required</div>
+                    <div *ngIf="fval.email.errors.email">Enter a valid email address , example : king@gmail.com</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field style="width:100%;">
+                    <input type="text" formControlName="username" matInput placeholder="Username" id="user" [ngClass]="{ 'is-invalid': submitted && fval.username.errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && fval.username.errors">
+                    <div *ngIf="fval.username.errors.required">
+                        User Name is required 
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <mat-form-field style="width:100%;">
+                    <input type="password" formControlName="password" matInput placeholder="Password" id="pass" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && fval.password.errors">
+                    <div ngClass="fval.password.errors.required">Password is required.</div>
+                    <div *ngIf="fval.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field style="width:100%;">
+                <input type="password" formControlName="confirmPassword"
+                matInput placeholder="Confirm Password"[ngClass]="{ 'is-invalid': submitted && fval.confirmPassword.errors }" 
+                 appConfirmEqualValidator='password'/>
+                </mat-form-field>
+                <div *ngIf="submitted && fval.confirmPassword.errors">
+                    <div *ngIf="fval.confirmPassword.errors.required"
+                    >Confirm password is required</div>
+                    <div *ngIf="myForm.get('confirmPassword').errors && myForm.get('confirmPassword').errors.ConfirmPassword">Password Mismatch</div>
+                </div>
+                
+              </div>
+            
+            <div>
+                <button type="submit" class="btn btn-primary register">Register <span class="arrowbtn"><span
+                      class="fa fa-arrow-right"></span></span></button>
+              
+              &nbsp;
+                <button class="btn btn-primary signin" (click)="movetologin()">Login<span class="arrowbtn"><span
+                    class="fa fa-arrow-right"></span></span></button>
+            </div>
+
+
+            <div style="text-align: center;">                
+                {{successMessage}}
+            </div>
+        </form>
+    </div>
 </div>

@@ -1,0 +1,39 @@
+<div class="p-3 mb-2 bg-success text-white center">Username : {{username}} &nbsp;&nbsp;  Email: {{email}}</div>
+
+<form [formGroup]="newsForm" (submit)="updateNews()">
+    <h1>Edit News</h1>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input appHighlight type="text" id="title" class="form-control" formControlName="title" name="title" >
+    </div>
+  
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        appHighlight
+        id="description"
+        class="form-control"
+        formControlName="description"
+        rows="5"
+        name="description"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="url">Url</label>
+        <input appHighlight type="text" id="url" formControlName="url" class="form-control" name="url" >
+      </div>
+
+      <div class="form-group">
+        <label for="urlToImage">Url To Image</label>
+        <input appHighlight type="text" id="urlToImage" formControlName="urlToImage" class="form-control" name="urlToImage" >
+      </div>
+
+      <div class="form-group">
+        <label for="publishedAt">Published At</label>
+        <input appHighlight type="text" id="publishedAt" formControlName="publishedAt" class="form-control" name="publishedAt" >
+      </div>
+  
+    <button class="btn btn-primary">Update</button>
+  </form>
+  
